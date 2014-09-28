@@ -11,6 +11,8 @@ import UIKit
 class tweetsViewController: UITableViewController {
 
     var tweets: [Tweet]?
+    var displayedTweet: Tweet?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,6 +60,14 @@ class tweetsViewController: UITableViewController {
         }
         return 0
     }
+    
+    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        displayedTweet = tweets![0]
+        return indexPath
+    }
+    
+//    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) {
+//    }
     
     
     @IBAction func signOut(sender: AnyObject) {
