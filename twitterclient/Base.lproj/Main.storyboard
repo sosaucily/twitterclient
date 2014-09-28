@@ -68,6 +68,12 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TBL-AY-Iva" id="vPD-RC-PKR">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="This is the body of a very important tweet!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jb-b9-FWS">
+                                            <rect key="frame" x="71" y="27" width="501" height="32"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xa2-Y1-Prw">
                                             <rect key="frame" x="18" y="13" width="48" height="48"/>
                                             <constraints>
@@ -86,10 +92,10 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="This is the body of a very important tweet!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jb-b9-FWS">
-                                            <rect key="frame" x="71" y="27" width="501" height="32"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="timestamp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIh-bH-6wA">
+                                            <rect key="frame" x="501" y="13" width="81" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -99,7 +105,9 @@
                                         <constraint firstItem="4jb-b9-FWS" firstAttribute="top" secondItem="wJt-cR-qok" secondAttribute="bottom" constant="1" id="MVO-3o-80N"/>
                                         <constraint firstItem="4jb-b9-FWS" firstAttribute="leading" secondItem="wJt-cR-qok" secondAttribute="leading" id="S62-fY-PPe"/>
                                         <constraint firstItem="wJt-cR-qok" firstAttribute="leading" secondItem="xa2-Y1-Prw" secondAttribute="trailing" constant="5" id="V7M-Jq-RNN"/>
+                                        <constraint firstItem="wJt-cR-qok" firstAttribute="centerY" secondItem="eIh-bH-6wA" secondAttribute="centerY" constant="0.5" id="Z8z-7l-LMK"/>
                                         <constraint firstItem="ail-pH-hVo" firstAttribute="centerY" secondItem="wJt-cR-qok" secondAttribute="centerY" constant="-1" id="hDH-bA-18O"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="eIh-bH-6wA" secondAttribute="trailing" constant="10" id="hWO-s6-dyD"/>
                                         <constraint firstItem="xa2-Y1-Prw" firstAttribute="leading" secondItem="vPD-RC-PKR" secondAttribute="leadingMargin" constant="10" id="ilr-0u-kPv"/>
                                         <constraint firstItem="xa2-Y1-Prw" firstAttribute="top" secondItem="vPD-RC-PKR" secondAttribute="topMargin" constant="2" id="khM-Mc-v96"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="4jb-b9-FWS" secondAttribute="bottom" constant="2" id="p5v-US-8v7"/>
@@ -109,6 +117,7 @@
                                 <connections>
                                     <outlet property="handleLabel" destination="ail-pH-hVo" id="vvV-vX-9XK"/>
                                     <outlet property="nameLabel" destination="wJt-cR-qok" id="iYJ-pt-u0q"/>
+                                    <outlet property="timestampLabel" destination="eIh-bH-6wA" id="1Ea-rx-ea9"/>
                                     <outlet property="tweetText" destination="4jb-b9-FWS" id="KPv-uj-Mc4"/>
                                     <outlet property="userImage" destination="xa2-Y1-Prw" id="Enq-gT-lfe"/>
                                 </connections>

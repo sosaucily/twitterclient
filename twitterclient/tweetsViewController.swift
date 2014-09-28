@@ -71,11 +71,11 @@ class tweetsViewController: UITableViewController {
 //        var tweet = self.tweets![indexPath.row]
         var tweet = self.tweets![0]
         cell.tweetText.text = tweet.text
-        if (tweet.user!.profileImageUrl != nil) {
-            cell.userImage.setImageWithURL(NSURL(string: tweet.user!.profileImageUrl!))
-        }
+        cell.userImage.setImageWithURL(NSURL(string: tweet.user!.profileImageUrl!))
+        
         cell.nameLabel.text = tweet.user?.name
         cell.handleLabel.text = "@\(tweet.user!.screenname!)"
+        cell.timestampLabel.text = tweet.createdAt?.prettyTimestampSinceNow()
 
         return cell
     }
