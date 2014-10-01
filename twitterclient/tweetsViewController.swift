@@ -13,11 +13,17 @@ class tweetsViewController: UITableViewController {
     var tweets: [Tweet]?
     var displayedTweet: Tweet?
     
+    var refreshControlItem: UIRefreshControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.estimatedRowHeight = 200
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        
+        self.refreshControlItem = UIRefreshControl()
+        self.refreshControlItem.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControlItem)
         
         TwitterClient.sharedInstance.homeTimelineWithCompletion(nil,
             completion: { (tweets, error) in
@@ -36,6 +42,22 @@ class tweetsViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    func onRefresh() {
+        println("refreshing!")
+        TwitterClient.sharedInstance.homeTimelineWithCompletion(nil,
+            completion: { (tweets, error) in
+                if error != nil {
+                    println(error)
+                    return
+                }
+                self.tweets = tweets
+                println("Got \(self.tweets!.count) tweets")
+                self.tableView.reloadData()
+                self.refreshControlItem.endRefreshing()
+            }
+        )
     }
 
     override func didReceiveMemoryWarning() {

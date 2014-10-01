@@ -60,16 +60,32 @@ class TweetDetailsViewController: UIViewController {
         timestampLabel.text = dateString
         
         retweetsLabel.text = "\(tweetDelegate!.retweetCount!) RETWEETS \(tweetDelegate!.favoriteCount!) FAVORITES"
-        
     }
-    /*
+    
+    @IBAction func onFavorite(sender: AnyObject) {
+        println("favorite!")
+        TwitterClient.sharedInstance.favorite(self.tweetDelegate!.id!)
+    }
+    
+    @IBAction func onRetweet(sender: AnyObject) {
+        println("retweet!")
+        TwitterClient.sharedInstance.retweet(self.tweetDelegate!.id!)
+    }
+    
+    @IBAction func onReply(sender: AnyObject) {
+        println("reply!")
+        self.performSegueWithIdentifier("replySegue", sender: self)
+//        TwitterClient.sharedInstance.reply(, tweetId: <#Int#>)
+    }
+    
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+//         Get the new view controller using segue.destinationViewController.
+//         Pass the selected object to the new view controller.
+        var dest_vc = segue.destinationViewController as ComposeViewController
+        dest_vc.baseTweetText = "@\(tweetDelegate!.user!.screenname!)"
     }
-    */
-
 }

@@ -9,6 +9,7 @@
 import Foundation
 
 class Tweet: NSObject {
+    var id: Int?
     var user: User?
     var text: String?
     var createdAtString: String?
@@ -17,6 +18,7 @@ class Tweet: NSObject {
     var favoriteCount: Int?
     
     init(dictionary: NSDictionary) {
+        id = dictionary["id"] as? Int
         user = User(dictionary: dictionary["user"] as NSDictionary)
         text = dictionary["text"] as? String
         createdAtString = dictionary["created_at"] as? String

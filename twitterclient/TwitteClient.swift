@@ -47,6 +47,50 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
         )
     }
     
+    func tweet(message: NSString) {
+        var params = ["status":message]
+        
+        POST("1.1/statuses/update.json", parameters: params, success: { (operation, response) -> Void in
+                println("you tweeted!")
+        }, { (operation, error) -> Void in
+            println("error tweeting")
+            println(error)
+        })
+    }
+
+    func reply(message: NSString, tweetId: Int) {
+        var params = ["status":message, "in_reply_to_status_id":tweetId]
+        
+        POST("1.1/statuses/update.json", parameters: params, success: { (operation, response) -> Void in
+            println("you replied!")
+            }, { (operation, error) -> Void in
+                println("error replying")
+                println(error)
+        })
+    }
+    
+    func retweet(tweetId: Int) {
+        var params = ["id":tweetId]
+        
+        POST("1.1/statuses/retweet/\(tweetId).json", parameters: params, success: { (operation, response) -> Void in
+            println("you retweeted!")
+            }, { (operation, error) -> Void in
+                println("error retweeting")
+                println(error)
+        })
+    }
+    
+    func favorite(tweetId: Int) {
+        var params = ["id":tweetId]
+        
+        POST("1.1/favorites/create.json", parameters: params, success: { (operation, response) -> Void in
+            println("you favorited!")
+            }, { (operation, error) -> Void in
+                println("error favoriting")
+                println(error)
+        })
+    }
+    
     func homeTimelineWithCompletion(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> ()) {
 
         var _tweetData = NSUserDefaults.standardUserDefaults().objectForKey(tweetsKey) as? NSData

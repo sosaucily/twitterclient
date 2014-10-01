@@ -6,7 +6,10 @@
 //  Copyright (c) 2014 Jesse Smith. All rights reserved.
 //
 
-import UIKit 
+import UIKit
+import Fabric
+import MoPub
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        Fabric.with([MoPub()])
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: User.userDidLogoutNotification, object: nil)
         

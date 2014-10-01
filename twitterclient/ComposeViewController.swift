@@ -9,6 +9,8 @@
 import UIKit
 
 class ComposeViewController: UIViewController {
+    
+    var baseTweetText = ""
 
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var handleLabel: UILabel!
@@ -24,6 +26,8 @@ class ComposeViewController: UIViewController {
         nameLabel.text = User.currentUser?.name
         handleLabel.text = User.currentUser?.screenname
         userImage.setImageWithURL(NSURL(string: User.currentUser!.profileImageUrl!))
+        
+        tweetTextArea.text = baseTweetText
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -48,6 +52,10 @@ class ComposeViewController: UIViewController {
     
     @IBAction func doTweet(sender: AnyObject) {
         println("tweeeeet")
+        TwitterClient.sharedInstance.tweet(self.tweetTextArea.text)
+        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+            
+        })
     }
 
     
