@@ -68,8 +68,8 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TBL-AY-Iva" id="vPD-RC-PKR">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="This is the body of a very important tweet!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jb-b9-FWS">
-                                            <rect key="frame" x="71" y="27" width="501" height="32"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="This is the body of a very important tweet!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jb-b9-FWS">
+                                            <rect key="frame" x="71" y="29" width="501" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -81,31 +81,31 @@
                                                 <constraint firstAttribute="width" constant="48" id="efO-74-5qf"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="@TheMichaelMoran" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ail-pH-hVo">
-                                            <rect key="frame" x="110" y="10" width="118" height="16"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timestamp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIh-bH-6wA">
-                                            <rect key="frame" x="518" y="10" width="64" height="16"/>
+                                            <rect key="frame" x="518" y="10" width="63.5" height="16"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Michael Moran" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJt-cR-qok">
-                                            <rect key="frame" x="71" y="10" width="104" height="18"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Michael Moran" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJt-cR-qok">
+                                            <rect key="frame" x="71" y="10" width="55" height="18"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@TheMichaelMoran" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ail-pH-hVo">
+                                            <rect key="frame" x="177" y="10" width="118" height="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="ail-pH-hVo" firstAttribute="leading" relation="lessThanOrEqual" secondItem="wJt-cR-qok" secondAttribute="trailing" constant="2" id="CUZ-xk-qaw"/>
                                         <constraint firstItem="wJt-cR-qok" firstAttribute="top" secondItem="vPD-RC-PKR" secondAttribute="topMargin" constant="2" id="H2c-1f-HrQ"/>
                                         <constraint firstItem="ail-pH-hVo" firstAttribute="top" secondItem="vPD-RC-PKR" secondAttribute="topMargin" constant="2" id="IKv-Lo-uhR"/>
                                         <constraint firstItem="4jb-b9-FWS" firstAttribute="top" secondItem="wJt-cR-qok" secondAttribute="bottom" constant="1" id="MVO-3o-80N"/>
                                         <constraint firstItem="4jb-b9-FWS" firstAttribute="leading" secondItem="wJt-cR-qok" secondAttribute="leading" id="S62-fY-PPe"/>
                                         <constraint firstItem="wJt-cR-qok" firstAttribute="leading" secondItem="xa2-Y1-Prw" secondAttribute="trailing" constant="5" id="V7M-Jq-RNN"/>
+                                        <constraint firstItem="ail-pH-hVo" firstAttribute="leading" secondItem="wJt-cR-qok" secondAttribute="trailing" constant="2" id="do2-sX-VLJ"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="eIh-bH-6wA" secondAttribute="trailing" constant="10" id="hWO-s6-dyD"/>
                                         <constraint firstItem="eIh-bH-6wA" firstAttribute="top" secondItem="vPD-RC-PKR" secondAttribute="topMargin" constant="2" id="ifk-L8-Ooc"/>
                                         <constraint firstItem="xa2-Y1-Prw" firstAttribute="leading" secondItem="vPD-RC-PKR" secondAttribute="leadingMargin" constant="10" id="ilr-0u-kPv"/>
@@ -387,6 +387,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GGs-5p-dxV"/>
+        <segue reference="bRi-3e-2pE"/>
     </inferredMetricsTieBreakers>
 </document>

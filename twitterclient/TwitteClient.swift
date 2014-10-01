@@ -8,7 +8,7 @@
 
 import UIKit
 
-let tweetsKey = "tweetsKey"
+//let tweetsKey = "tweetsKey"
 
 let twitterConsumerKey = "vSayfCizaCV18XwUjI0KssH6o"
 let twitterConsumerSecret = "2RkNWN6Gx4U8wZAKKUAqXBXbXQm5tI77yrNy9mKQv0eSAZlKyg"
@@ -93,13 +93,14 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
     
     func homeTimelineWithCompletion(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> ()) {
 
-        var _tweetData = NSUserDefaults.standardUserDefaults().objectForKey(tweetsKey) as? NSData
-        if _tweetData != nil {
-            var _tweet = NSJSONSerialization.JSONObjectWithData(_tweetData!, options: nil, error: nil) as? NSDictionary
-            var tweets = Tweet.tweetsWithArray([_tweet!])
-            completion(tweets: tweets, error: nil)
-            return
-        }
+        //Use this section to cache tweets to save api calls during dev
+//        var _tweetData = NSUserDefaults.standardUserDefaults().objectForKey(tweetsKey) as? NSData
+//        if _tweetData != nil {
+//            var _tweet = NSJSONSerialization.JSONObjectWithData(_tweetData!, options: nil, error: nil) as? NSDictionary
+//            var tweets = Tweet.tweetsWithArray([_tweet!])
+//            completion(tweets: tweets, error: nil)
+//            return
+//        }
         
         GET("1.1/statuses/home_timeline.json", parameters: params,
             success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
@@ -107,9 +108,10 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
 
                 var tweets = Tweet.tweetsWithArray(response as [NSDictionary])
             
-                var serializedTweets = NSJSONSerialization.dataWithJSONObject(response[0], options: nil, error: nil)
-                NSUserDefaults.standardUserDefaults().setObject(serializedTweets, forKey: tweetsKey)
-                NSUserDefaults.standardUserDefaults().synchronize()
+                        //Use this section to cache tweets to save api calls during dev
+//                var serializedTweets = NSJSONSerialization.dataWithJSONObject(response[0], options: nil, error: nil)
+//                NSUserDefaults.standardUserDefaults().setObject(serializedTweets, forKey: tweetsKey)
+//                NSUserDefaults.standardUserDefaults().synchronize()
                 
                 completion(tweets: tweets, error: nil)
             },
