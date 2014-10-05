@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C1E7C5619E1F3D800EADE91 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E7C5519E1F3D800EADE91 /* Sidebar.swift */; };
 		1C24182219D71FF800FAC644 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C24182119D71FF800FAC644 /* AppDelegate.swift */; };
 		1C24182419D71FF800FAC644 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C24182319D71FF800FAC644 /* ViewController.swift */; };
 		1C24182719D71FF800FAC644 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C24182519D71FF800FAC644 /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C1E7C5519E1F3D800EADE91 /* Sidebar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
 		1C24181C19D71FF800FAC644 /* twitterclient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = twitterclient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C24182019D71FF800FAC644 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C24182119D71FF800FAC644 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				1C8E345E19D7C68A00013B53 /* TweetDetailsViewController.swift */,
 				1C8E346019D7DDF600013B53 /* ComposeViewController.swift */,
 				1C335F1719E1E08D001660CA /* TweetsListViewController.swift */,
+				1C1E7C5519E1F3D800EADE91 /* Sidebar.swift */,
 			);
 			path = twitterclient;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				1C8E345F19D7C68A00013B53 /* TweetDetailsViewController.swift in Sources */,
 				1C24182419D71FF800FAC644 /* ViewController.swift in Sources */,
 				1C335F1A19E1E2AD001660CA /* TweetsUITableView.swift in Sources */,
+				1C1E7C5619E1F3D800EADE91 /* Sidebar.swift in Sources */,
 				1C8E345419D7276C00013B53 /* TwitteClient.swift in Sources */,
 				1C24182219D71FF800FAC644 /* AppDelegate.swift in Sources */,
 			);

@@ -17,8 +17,18 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var composeButton: UIButton!
     @IBOutlet weak var tableView: TweetsUITableView!
     
+    @IBOutlet weak var tableViewCenterXConstraint: NSLayoutConstraint!
+    
+    @IBAction func didSwipe(sender: UISwipeGestureRecognizer) {
+        if sender.state == .Ended {
+            self.tableViewCenterXConstraint.constant = -165
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableViewCenterXConstraint.constant = 0
         
         self.tableView.estimatedRowHeight = 200
         self.tableView.rowHeight = UITableViewAutomaticDimension
