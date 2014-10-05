@@ -76,14 +76,18 @@ class tweetsViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        if tweets != nil {
-            return tweets!.count
-        }
-        return 0
+//        if tweets != nil {
+//            return tweets!.count
+//        }
+        // return 0
+        //Use this section to cache tweets to save api calls during dev
+        return 20
     }
     
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        displayedTweet = tweets![indexPath.row]
+        //Use this section to cache tweets to save api calls during dev
+//        displayedTweet = tweets![indexPath.row]
+        displayedTweet = tweets![0]
         return indexPath
     }
     
@@ -99,7 +103,9 @@ class tweetsViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("tweetCell", forIndexPath: indexPath) as TweetCell
 
         // Configure the cell...
-        var tweet = self.tweets![indexPath.row]
+        //Use this section to cache tweets to save api calls during dev
+//        var tweet = self.tweets![indexPath.row]
+        var tweet = self.tweets![0]
         cell.tweetText.text = tweet.text
         cell.userImage.setImageWithURL(NSURL(string: tweet.user!.profileImageUrl!))
         
