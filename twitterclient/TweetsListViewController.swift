@@ -17,11 +17,23 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var composeButton: UIButton!
     @IBOutlet weak var tableView: TweetsUITableView!
     
+    @IBOutlet weak var profileView: ProfileView!
+    
+    @IBOutlet weak var timelineLabel: UILabel!
     @IBOutlet weak var tableViewCenterXConstraint: NSLayoutConstraint!
+    @IBOutlet weak var profileLabel: UILabel!
     
     @IBAction func didSwipe(sender: UISwipeGestureRecognizer) {
-        if sender.state == .Ended {
-            self.tableViewCenterXConstraint.constant = -165
+        if (sender.direction == UISwipeGestureRecognizerDirection.Right) {
+            if sender.state == .Ended {
+                self.tableViewCenterXConstraint.constant = -165
+            }
+        }
+        
+        if (sender.direction == UISwipeGestureRecognizerDirection.Left) {
+            if sender.state == .Ended {
+                self.tableViewCenterXConstraint.constant = 0
+            }
         }
     }
     
