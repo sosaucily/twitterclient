@@ -22,12 +22,12 @@ class TweetDetailsViewController: UIViewController {
     @IBOutlet weak var favoriteButton: UIButton!
     
     
-    var tweetDelegate: Tweet?
+    var tweet: Tweet?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tweetDelegate = getTweetFromNavStack()
+//        tweet = getTweetFromNavStack()
         
         displayDataFromTweet()
         
@@ -39,37 +39,37 @@ class TweetDetailsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func getTweetFromNavStack() -> Tweet? {
-        var vcs = self.navigationController?.viewControllers
-        var vc = vcs?[0] as? tweetsViewController
-        return vc?.displayedTweet
-    }
+//    func getTweetFromNavStack() -> Tweet? {
+//        var vcs = self.navigationController?.viewControllers
+//        var vc = vcs?[0] as? tweetsViewController
+//        return vc?.displayedTweet
+//    }
     
     func displayDataFromTweet() {
-        var imageUrl: String = tweetDelegate!.user!.profileImageUrl!
+        var imageUrl: String = tweet!.user!.profileImageUrl!
         
         userImage?.setImageWithURL(NSURL(string: imageUrl))
 
-        nameLabel.text = tweetDelegate!.user!.name
-        handleLabel.text = "@\(tweetDelegate!.user!.screenname!)"
-        tweetText.text = tweetDelegate!.text
+        nameLabel.text = tweet!.user!.name
+        handleLabel.text = "@\(tweet!.user!.screenname!)"
+        tweetText.text = tweet!.text
         
         var formatter = NSDateFormatter()
         formatter.dateFormat = "M/d/yy',' hh:mm a"
-        var dateString = formatter.stringFromDate(tweetDelegate!.createdAt!)
+        var dateString = formatter.stringFromDate(tweet!.createdAt!)
         timestampLabel.text = dateString
         
-        retweetsLabel.text = "\(tweetDelegate!.retweetCount!) RETWEETS \(tweetDelegate!.favoriteCount!) FAVORITES"
+        retweetsLabel.text = "\(tweet!.retweetCount!) RETWEETS \(tweet!.favoriteCount!) FAVORITES"
     }
     
     @IBAction func onFavorite(sender: AnyObject) {
         println("favorite!")
-        TwitterClient.sharedInstance.favorite(self.tweetDelegate!.id!)
+        TwitterClient.sharedInstance.favorite(self.tweet!.id!)
     }
     
     @IBAction func onRetweet(sender: AnyObject) {
         println("retweet!")
-        TwitterClient.sharedInstance.retweet(self.tweetDelegate!.id!)
+        TwitterClient.sharedInstance.retweet(self.tweet!.id!)
     }
     
     @IBAction func onReply(sender: AnyObject) {
@@ -86,6 +86,6 @@ class TweetDetailsViewController: UIViewController {
 //         Get the new view controller using segue.destinationViewController.
 //         Pass the selected object to the new view controller.
         var dest_vc = segue.destinationViewController as ComposeViewController
-        dest_vc.baseTweetText = "@\(tweetDelegate!.user!.screenname!)"
+        dest_vc.baseTweetText = "@\(tweet!.user!.screenname!)"
     }
 }
