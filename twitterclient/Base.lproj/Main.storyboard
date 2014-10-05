@@ -157,12 +157,13 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="HJs-dN-XF2" kind="presentation" id="Dyj-TF-rRV"/>
+                                    <segue destination="HJs-dN-XF2" kind="presentation" id="wF1-BD-kDs"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="composeButton" destination="7jD-0i-C8z" id="j1y-c0-uag"/>
                         <outlet property="tableView" destination="VRE-ER-qbJ" id="8oe-OG-YmJ"/>
                     </connections>
                 </viewController>
@@ -394,6 +395,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GGs-5p-dxV"/>
+        <segue reference="wF1-BD-kDs"/>
     </inferredMetricsTieBreakers>
 </document>

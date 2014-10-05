@@ -14,6 +14,7 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
     var displayedTweet: Tweet?
     var refreshControlItem: UIRefreshControl!
 
+    @IBOutlet weak var composeButton: UIButton!
     @IBOutlet weak var tableView: TweetsUITableView!
     
     override func viewDidLoad() {
@@ -54,9 +55,11 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        
-        var detailViewController = segue.destinationViewController as TweetDetailsViewController
-        detailViewController.tweet = displayedTweet
+
+        if(sender as? NSObject != composeButton) {
+            var detailViewController = segue.destinationViewController as TweetDetailsViewController
+            detailViewController.tweet = displayedTweet
+        }
     }
 
     
