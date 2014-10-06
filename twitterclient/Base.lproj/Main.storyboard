@@ -150,12 +150,25 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qoa-tu-duM" userLabel="container">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5zm-6N-6V1" userLabel="MentionsView">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mentions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="46e-r2-Y8V">
+                                                <rect key="frame" x="265" y="258" width="71" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="centerY" secondItem="46e-r2-Y8V" secondAttribute="centerY" id="Owd-KL-NSG"/>
+                                            <constraint firstAttribute="centerX" secondItem="46e-r2-Y8V" secondAttribute="centerX" id="qRF-CX-aMc"/>
+                                        </constraints>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4en-j0-3MN" userLabel="Profile" customClass="ProfileView" customModule="twitterclient" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                         <color key="backgroundColor" red="1" green="0.65224261979999998" blue="0.33705141799999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="WIu-nl-UM9" appends="YES" id="KHX-eV-OrO"/>
-                                        </connections>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="VRE-ER-qbJ" customClass="TweetsUITableView" customModule="twitterclient" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
@@ -226,21 +239,27 @@
                                         <connections>
                                             <outlet property="dataSource" destination="UBZ-8f-Be4" id="dKp-l6-F4X"/>
                                             <outlet property="delegate" destination="UBZ-8f-Be4" id="vHp-r7-ov6"/>
-                                            <outletCollection property="gestureRecognizers" destination="WIu-nl-UM9" appends="YES" id="cht-Gc-E9G"/>
                                         </connections>
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="VRE-ER-qbJ" secondAttribute="centerX" id="6mO-ni-sgP"/>
+                                    <constraint firstAttribute="width" secondItem="5zm-6N-6V1" secondAttribute="width" id="ECI-rb-S1F"/>
                                     <constraint firstItem="4en-j0-3MN" firstAttribute="width" secondItem="Qoa-tu-duM" secondAttribute="width" id="Ecc-XO-tt4"/>
                                     <constraint firstAttribute="centerY" secondItem="VRE-ER-qbJ" secondAttribute="centerY" id="GpE-wu-yag"/>
                                     <constraint firstItem="VRE-ER-qbJ" firstAttribute="width" secondItem="Qoa-tu-duM" secondAttribute="width" id="GqX-tA-TKZ"/>
+                                    <constraint firstAttribute="centerX" secondItem="5zm-6N-6V1" secondAttribute="centerX" id="KIK-gk-Ehu"/>
                                     <constraint firstAttribute="centerY" secondItem="4en-j0-3MN" secondAttribute="centerY" id="SZ7-RF-Fh6"/>
+                                    <constraint firstAttribute="centerY" secondItem="5zm-6N-6V1" secondAttribute="centerY" id="Zfu-Cy-yR5"/>
                                     <constraint firstItem="4en-j0-3MN" firstAttribute="height" secondItem="Qoa-tu-duM" secondAttribute="height" id="ptx-3a-rue"/>
+                                    <constraint firstAttribute="height" secondItem="5zm-6N-6V1" secondAttribute="height" id="sX2-y1-55o"/>
                                     <constraint firstItem="VRE-ER-qbJ" firstAttribute="height" secondItem="Qoa-tu-duM" secondAttribute="height" id="wS3-Oq-2yZ"/>
                                     <constraint firstAttribute="centerX" secondItem="4en-j0-3MN" secondAttribute="centerX" id="wkA-xN-OGK"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="WIu-nl-UM9" appends="YES" id="f1Q-lo-pwm"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -283,8 +302,10 @@
                         <outlet property="containerView" destination="Qoa-tu-duM" id="Jqq-vY-9li"/>
                         <outlet property="containerViewCenterXConstraint" destination="Bc9-rS-WCj" id="uEt-0N-j5l"/>
                         <outlet property="mentionsButton" destination="dIs-3C-hue" id="qG4-dZ-zry"/>
+                        <outlet property="mentionsViewCenterXConstraint" destination="KIK-gk-Ehu" id="yc9-t6-Ykd"/>
                         <outlet property="profileButton" destination="8Ha-91-etO" id="z2Y-xG-b2e"/>
                         <outlet property="profileView" destination="4en-j0-3MN" id="J4I-F1-L8N"/>
+                        <outlet property="profileViewCenterXConstraint" destination="wkA-xN-OGK" id="TcW-Hx-pK8"/>
                         <outlet property="tableView" destination="VRE-ER-qbJ" id="8oe-OG-YmJ"/>
                         <outlet property="tableViewCenterXConstraint" destination="6mO-ni-sgP" id="HtV-jQ-8Ni"/>
                         <outlet property="timelineButton" destination="EC2-pt-bat" id="laf-KM-tkM"/>

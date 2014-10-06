@@ -28,18 +28,29 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var containerViewCenterXConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var tableViewCenterXConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var profileViewCenterXConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var mentionsViewCenterXConstraint: NSLayoutConstraint!
+    
     var vcs: [UIViewController] = [UIViewController(), UIViewController()]
     var currentVC: UIViewController?
     
     @IBAction func SidebarClick(sender: UIButton) {
         if (sender == profileButton) {
+            profileViewCenterXConstraint.constant = 0
             tableViewCenterXConstraint.constant = -1000
+            mentionsViewCenterXConstraint.constant = -1000
         }
         if (sender == timelineButton) {
             tableViewCenterXConstraint.constant = 0
+            profileViewCenterXConstraint.constant = -1000
+            mentionsViewCenterXConstraint.constant = -1000
         }
         if (sender == mentionsButton) {
-            
+            mentionsViewCenterXConstraint.constant = 0
+            profileViewCenterXConstraint.constant = -1000
+            tableViewCenterXConstraint.constant = -1000
         }
         
         self.containerViewCenterXConstraint.constant = 0
