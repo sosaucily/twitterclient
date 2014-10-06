@@ -9,6 +9,7 @@
 import UIKit
 
 let tweetsKey = "tweetsKey"
+let mentionsKey = "mentionsKey"
 
 let twitterConsumerKey = "vSayfCizaCV18XwUjI0KssH6o"
 let twitterConsumerSecret = "2RkNWN6Gx4U8wZAKKUAqXBXbXQm5tI77yrNy9mKQv0eSAZlKyg"
@@ -117,6 +118,38 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
             },
             failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
                 println("error getting home timeline")
+                completion(tweets: nil, error: error)
+            }
+        )
+    }
+    
+    
+    func mentionTimelineWithCompletion(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> ()) {
+        
+        //Use this section to cache tweets to save api calls during dev
+        var _tweetData = NSUserDefaults.standardUserDefaults().objectForKey(mentionsKey) as? NSData
+        if _tweetData != nil {
+            var _tweet = NSJSONSerialization.JSONObjectWithData(_tweetData!, options: nil, error: nil) as? NSDictionary
+            var tweets = Tweet.tweetsWithArray([_tweet!])
+            completion(tweets: tweets, error: nil)
+            return
+        }
+        
+        GET("1.1/statuses/mentions_timeline.json", parameters: params,
+            success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+                println("received mentions timeline")
+                
+                var tweets = Tweet.tweetsWithArray(response as [NSDictionary])
+                
+                //Use this section to cache tweets to save api calls during dev
+                var serializedTweets = NSJSONSerialization.dataWithJSONObject(response[0], options: nil, error: nil)
+                NSUserDefaults.standardUserDefaults().setObject(serializedTweets, forKey: mentionsKey)
+                NSUserDefaults.standardUserDefaults().synchronize()
+                
+                completion(tweets: tweets, error: nil)
+            },
+            failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("error getting mentions timeline")
                 completion(tweets: nil, error: error)
             }
         )

@@ -11,8 +11,10 @@ import UIKit
 class TweetsListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var tweets: [Tweet]?
+    var mentions: [Tweet]?
     var displayedTweet: Tweet?
     var refreshControlItem: UIRefreshControl!
+    var mentionRefreshControlItem: UIRefreshControl!
     
     @IBOutlet weak var composeButton: UIButton!
     @IBOutlet weak var tableView: TweetsUITableView!
@@ -31,10 +33,20 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
     
     @IBOutlet weak var mentionsViewCenterXConstraint: NSLayoutConstraint!
     
+    
+    //Mentions View Stuff
+    @IBOutlet weak var mentionsTable: UITableView!
+    
+    
     //Profile View Stuff
     @IBOutlet weak var ProfileBackgroundImage: UIImageView!
-    
     @IBOutlet weak var profileStats: UILabel!
+    
+    
+    
+    
+    
+    
     
     @IBAction func SidebarClick(sender: UIButton) {
         if (sender == profileButton) {
@@ -78,9 +90,16 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
         self.tableView.estimatedRowHeight = 200
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
+        self.mentionsTable.estimatedRowHeight = 200
+        self.mentionsTable.rowHeight = UITableViewAutomaticDimension
+        
         self.refreshControlItem = UIRefreshControl()
         self.refreshControlItem.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControlItem)
+
+        self.mentionRefreshControlItem = UIRefreshControl()
+        self.mentionRefreshControlItem.addTarget(self, action: "onMentionRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        self.mentionsTable.addSubview(mentionRefreshControlItem)
 
         
         TwitterClient.sharedInstance.homeTimelineWithCompletion(nil,
@@ -92,6 +111,19 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
                 self.tweets = tweets
                 println("Got \(self.tweets!.count) tweets")
                 self.tableView.reloadData()
+            }
+        )
+        
+
+        TwitterClient.sharedInstance.mentionTimelineWithCompletion(nil,
+            completion: { (tweets, error) in
+                if error != nil {
+                    println(error)
+                    return
+                }
+                self.mentions = tweets
+                println("Got \(self.mentions!.count) mentions")
+                self.mentionsTable.reloadData()
             }
         )
         
@@ -135,14 +167,24 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
         //        }
         // return 0
         //Use this section to cache tweets to save api calls during dev
+        if (tableView == self.tableView) {
+            return 20
+        }
+        if (tableView == self.mentionsTable) {
+            return 20
+        }
         return 20
     }
     
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         //Use this section to cache tweets to save api calls during dev
         //        displayedTweet = tweets![indexPath.row]
-        displayedTweet = tweets![0]
-        
+        if (tableView == self.tableView) {
+            displayedTweet = tweets![0]
+        }
+        if (tableView == mentionsTable) {
+            displayedTweet = mentions![0]
+        }
         return indexPath
     }
     
@@ -153,6 +195,10 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
         //Use this section to cache tweets to save api calls during dev
         //        var tweet = self.tweets![indexPath.row]
         var tweet = self.tweets![0]
+        if (tableView == mentionsTable) {
+            tweet = self.mentions![0]
+        }
+
         cell.tweetText.text = tweet.text
         cell.userImage.setImageWithURL(NSURL(string: tweet.user!.profileImageUrl!))
         
@@ -164,7 +210,7 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func onRefresh() {
-        println("refreshing!")
+        println("refreshing tweets")
         TwitterClient.sharedInstance.homeTimelineWithCompletion(nil,
             completion: { (tweets, error) in
                 if error != nil {
@@ -178,5 +224,20 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
             }
         )
     }
-
+    
+    func onMentionRefresh() {
+        println("refreshing mentions")
+        TwitterClient.sharedInstance.mentionTimelineWithCompletion(nil,
+            completion: { (tweets, error) in
+                if error != nil {
+                    println(error)
+                    return
+                }
+                self.mentions = tweets
+                println("Got \(self.mentions!.count) mentions")
+                self.mentionsTable.reloadData()
+                self.mentionRefreshControlItem.endRefreshing()
+            }
+        )
+    }
 }
