@@ -10,6 +10,8 @@ import UIKit
 
 class TweetsListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    var cacheStuff = false
+    
     var tweets: [Tweet]?
     var mentions: [Tweet]?
     var displayedTweet: Tweet?
@@ -167,24 +169,40 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
         //        }
         // return 0
         //Use this section to cache tweets to save api calls during dev
-        if (tableView == self.tableView) {
+        if (cacheStuff) {
             return 20
+        }
+        if (tableView == self.tableView) {
+            if tweets != nil {
+                return tweets!.count
+            }
         }
         if (tableView == self.mentionsTable) {
-            return 20
+            if mentions != nil {
+                return mentions!.count
+            }
         }
-        return 20
+        return 0
     }
     
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         //Use this section to cache tweets to save api calls during dev
-        //        displayedTweet = tweets![indexPath.row]
+        if (cacheStuff) {
+            if (tableView == self.tableView) {
+                displayedTweet = tweets![0]
+            }
+            if (tableView == mentionsTable) {
+                displayedTweet = mentions![0]
+            }
+        }
+
         if (tableView == self.tableView) {
-            displayedTweet = tweets![0]
+            displayedTweet = tweets![indexPath.row]
         }
-        if (tableView == mentionsTable) {
-            displayedTweet = mentions![0]
+        if (tableView == self.mentionsTable) {
+            displayedTweet = mentions![indexPath.row]
         }
+        
         return indexPath
     }
     
@@ -194,17 +212,27 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
         // Configure the cell...
         //Use this section to cache tweets to save api calls during dev
         //        var tweet = self.tweets![indexPath.row]
-        var tweet = self.tweets![0]
-        if (tableView == mentionsTable) {
-            tweet = self.mentions![0]
-        }
-
-        cell.tweetText.text = tweet.text
-        cell.userImage.setImageWithURL(NSURL(string: tweet.user!.profileImageUrl!))
+        var index = 0
         
-        cell.nameLabel.text = tweet.user?.name
-        cell.handleLabel.text = "@\(tweet.user!.screenname!)"
-        cell.timestampLabel.text = tweet.createdAt?.prettyTimestampSinceNow()
+        if (!cacheStuff) {
+            index = indexPath.row
+        }
+        
+        var tweet: Tweet?
+        
+        if (tableView == self.tableView) {
+            tweet = self.tweets![index]
+        }
+        if (tableView == mentionsTable) {
+            tweet = self.mentions![index]
+        }
+        
+        cell.tweetText.text = tweet!.text
+        cell.userImage.setImageWithURL(NSURL(string: tweet!.user!.profileImageUrl!))
+        
+        cell.nameLabel.text = tweet!.user?.name
+        cell.handleLabel.text = "@\(tweet!.user!.screenname!)"
+        cell.timestampLabel.text = tweet!.createdAt?.prettyTimestampSinceNow()
         
         return cell
     }
