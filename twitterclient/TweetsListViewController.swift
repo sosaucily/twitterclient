@@ -14,8 +14,6 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
     var displayedTweet: Tweet?
     var refreshControlItem: UIRefreshControl!
     
-    var currentView: UIView?
-
     @IBOutlet weak var composeButton: UIButton!
     @IBOutlet weak var tableView: TweetsUITableView!
     @IBOutlet weak var containerView: UIView!
@@ -33,8 +31,10 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
     
     @IBOutlet weak var mentionsViewCenterXConstraint: NSLayoutConstraint!
     
-    var vcs: [UIViewController] = [UIViewController(), UIViewController()]
-    var currentVC: UIViewController?
+    //Profile View Stuff
+    @IBOutlet weak var ProfileBackgroundImage: UIImageView!
+    
+    @IBOutlet weak var profileStats: UILabel!
     
     @IBAction func SidebarClick(sender: UIButton) {
         if (sender == profileButton) {
@@ -73,9 +73,6 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        vcs[0].view = tableView
-        vcs[1].view = profileView
-        
         self.containerViewCenterXConstraint.constant = 0
         
         self.tableView.estimatedRowHeight = 200
@@ -84,11 +81,7 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
         self.refreshControlItem = UIRefreshControl()
         self.refreshControlItem.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControlItem)
-//        
-//        if (currentView == nil) {
-//            currentView = tableView
-//            currentVC = vcs[0]
-//        }
+
         
         TwitterClient.sharedInstance.homeTimelineWithCompletion(nil,
             completion: { (tweets, error) in
@@ -101,8 +94,10 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
                 self.tableView.reloadData()
             }
         )
-
-        // Do any additional setup after loading the view.
+        
+        setupProfileView()
+        
+           // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -110,7 +105,13 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
         // Dispose of any resources that can be recreated.
     }
     
-
+    func setupProfileView() {
+        ProfileBackgroundImage.setImageWithURL(NSURL(string: User.currentUser!.profileBannerUrl!))
+        let tweets = User.currentUser!.numTweets!
+        let followers = User.currentUser!.numFollowers!
+        let following = User.currentUser!.numFollowing!
+        profileStats.text = "\(tweets) Tweets - \(followers) Followers - \(following) Following"
+    }
     
     // MARK: - Navigation
 
