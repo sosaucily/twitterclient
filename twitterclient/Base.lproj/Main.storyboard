@@ -66,12 +66,96 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FVL-Mf-udf" userLabel="Sidebar">
+                                <rect key="frame" x="0.0" y="0.0" width="165" height="536"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MPa-k3-O8u" userLabel="ProfileView">
+                                        <rect key="frame" x="0.0" y="58" width="165" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ha-91-etO">
+                                                <rect key="frame" x="60" y="5" width="44" height="30"/>
+                                                <state key="normal" title="Profile">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="SidebarClick:" destination="UBZ-8f-Be4" eventType="touchDown" id="ByY-TT-weH"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="0t4-x7-CVC"/>
+                                            <constraint firstAttribute="centerY" secondItem="8Ha-91-etO" secondAttribute="centerY" id="Vht-Wn-Z6l"/>
+                                            <constraint firstAttribute="centerX" secondItem="8Ha-91-etO" secondAttribute="centerX" constant="0.5" id="Vye-LW-nUU"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3nw-D0-X4Q" userLabel="TimelineView">
+                                        <rect key="frame" x="0.0" y="8" width="165" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EC2-pt-bat">
+                                                <rect key="frame" x="54" y="5" width="58" height="30"/>
+                                                <state key="normal" title="Timeline">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="SidebarClick:" destination="UBZ-8f-Be4" eventType="touchDown" id="NzU-UJ-Z4j"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="centerX" secondItem="EC2-pt-bat" secondAttribute="centerX" id="3dt-5y-FI6"/>
+                                            <constraint firstAttribute="height" constant="40" id="5B8-up-kNV"/>
+                                            <constraint firstAttribute="centerY" secondItem="EC2-pt-bat" secondAttribute="centerY" id="76m-Yy-vM1"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dqs-oh-EAL" userLabel="MentionsView">
+                                        <rect key="frame" x="0.0" y="108" width="165" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dIs-3C-hue">
+                                                <rect key="frame" x="50" y="5" width="64" height="30"/>
+                                                <state key="normal" title="Mentions">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="SidebarClick:" destination="UBZ-8f-Be4" eventType="touchDown" id="gSG-0c-Nkr"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="centerY" secondItem="dIs-3C-hue" secondAttribute="centerY" id="1aY-8a-ygL"/>
+                                            <constraint firstAttribute="centerX" secondItem="dIs-3C-hue" secondAttribute="centerX" id="23d-Xh-SwN"/>
+                                            <constraint firstAttribute="height" constant="40" id="jYs-mn-Kgs"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.16639486040000001" green="0.80124130260000004" blue="0.98886549469999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dqs-oh-EAL" secondAttribute="width" id="6Bs-hG-J6j"/>
+                                    <constraint firstItem="MPa-k3-O8u" firstAttribute="top" secondItem="3nw-D0-X4Q" secondAttribute="bottom" constant="10" id="HDd-gd-1Rg"/>
+                                    <constraint firstItem="3nw-D0-X4Q" firstAttribute="top" secondItem="FVL-Mf-udf" secondAttribute="topMargin" id="L0G-aL-kGH"/>
+                                    <constraint firstItem="MPa-k3-O8u" firstAttribute="width" secondItem="FVL-Mf-udf" secondAttribute="width" id="Noi-qf-nAz"/>
+                                    <constraint firstItem="dqs-oh-EAL" firstAttribute="top" secondItem="MPa-k3-O8u" secondAttribute="bottom" constant="10" id="O6B-mA-4IJ"/>
+                                    <constraint firstAttribute="centerX" secondItem="dqs-oh-EAL" secondAttribute="centerX" id="Qyh-oL-3Go"/>
+                                    <constraint firstAttribute="centerX" secondItem="MPa-k3-O8u" secondAttribute="centerX" id="TY1-2q-3Ms"/>
+                                    <constraint firstAttribute="width" secondItem="3nw-D0-X4Q" secondAttribute="width" id="WkS-QW-aZK"/>
+                                    <constraint firstAttribute="centerX" secondItem="3nw-D0-X4Q" secondAttribute="centerX" id="b9n-gO-l0W"/>
+                                    <constraint firstAttribute="width" constant="165" id="u3V-yU-rhf"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qoa-tu-duM" userLabel="container">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4en-j0-3MN" userLabel="Profile" customClass="ProfileView" customModule="twitterclient" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                         <color key="backgroundColor" red="1" green="0.65224261979999998" blue="0.33705141799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="WIu-nl-UM9" appends="YES" id="KHX-eV-OrO"/>
+                                        </connections>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="VRE-ER-qbJ" customClass="TweetsUITableView" customModule="twitterclient" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
@@ -158,63 +242,6 @@
                                     <constraint firstAttribute="centerX" secondItem="4en-j0-3MN" secondAttribute="centerX" id="wkA-xN-OGK"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FVL-Mf-udf" userLabel="Sidebar">
-                                <rect key="frame" x="0.0" y="0.0" width="165" height="536"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MPa-k3-O8u" userLabel="ProfileView">
-                                        <rect key="frame" x="0.0" y="58" width="165" height="40"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ha-91-etO">
-                                                <rect key="frame" x="60" y="5" width="44" height="30"/>
-                                                <state key="normal" title="Profile">
-                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="SidebarClick:" destination="UBZ-8f-Be4" eventType="touchDown" id="ByY-TT-weH"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="0t4-x7-CVC"/>
-                                            <constraint firstAttribute="centerY" secondItem="8Ha-91-etO" secondAttribute="centerY" id="Vht-Wn-Z6l"/>
-                                            <constraint firstAttribute="centerX" secondItem="8Ha-91-etO" secondAttribute="centerX" constant="0.5" id="Vye-LW-nUU"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3nw-D0-X4Q" userLabel="TimelineView">
-                                        <rect key="frame" x="0.0" y="8" width="165" height="40"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EC2-pt-bat">
-                                                <rect key="frame" x="54" y="5" width="58" height="30"/>
-                                                <state key="normal" title="Timeline">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="SidebarClick:" destination="UBZ-8f-Be4" eventType="touchDown" id="NzU-UJ-Z4j"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="centerX" secondItem="EC2-pt-bat" secondAttribute="centerX" id="3dt-5y-FI6"/>
-                                            <constraint firstAttribute="height" constant="40" id="5B8-up-kNV"/>
-                                            <constraint firstAttribute="centerY" secondItem="EC2-pt-bat" secondAttribute="centerY" id="76m-Yy-vM1"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" red="0.16639486040000001" green="0.80124130260000004" blue="0.98886549469999996" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="MPa-k3-O8u" firstAttribute="top" secondItem="3nw-D0-X4Q" secondAttribute="bottom" constant="10" id="HDd-gd-1Rg"/>
-                                    <constraint firstItem="3nw-D0-X4Q" firstAttribute="top" secondItem="FVL-Mf-udf" secondAttribute="topMargin" id="L0G-aL-kGH"/>
-                                    <constraint firstItem="MPa-k3-O8u" firstAttribute="width" secondItem="FVL-Mf-udf" secondAttribute="width" id="Noi-qf-nAz"/>
-                                    <constraint firstAttribute="centerX" secondItem="MPa-k3-O8u" secondAttribute="centerX" id="TY1-2q-3Ms"/>
-                                    <constraint firstAttribute="width" secondItem="3nw-D0-X4Q" secondAttribute="width" id="WkS-QW-aZK"/>
-                                    <constraint firstAttribute="centerX" secondItem="3nw-D0-X4Q" secondAttribute="centerX" id="b9n-gO-l0W"/>
-                                    <constraint firstAttribute="width" constant="165" id="u3V-yU-rhf"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -255,6 +282,7 @@
                         <outlet property="composeButton" destination="7jD-0i-C8z" id="j1y-c0-uag"/>
                         <outlet property="containerView" destination="Qoa-tu-duM" id="Jqq-vY-9li"/>
                         <outlet property="containerViewCenterXConstraint" destination="Bc9-rS-WCj" id="uEt-0N-j5l"/>
+                        <outlet property="mentionsButton" destination="dIs-3C-hue" id="qG4-dZ-zry"/>
                         <outlet property="profileButton" destination="8Ha-91-etO" id="z2Y-xG-b2e"/>
                         <outlet property="profileView" destination="4en-j0-3MN" id="J4I-F1-L8N"/>
                         <outlet property="tableView" destination="VRE-ER-qbJ" id="8oe-OG-YmJ"/>

@@ -24,6 +24,7 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var profileView: ProfileView!
     @IBOutlet weak var profileButton: UIButton!
     
+    @IBOutlet weak var mentionsButton: UIButton!
     @IBOutlet weak var containerViewCenterXConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var tableViewCenterXConstraint: NSLayoutConstraint!
@@ -37,6 +38,11 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
         if (sender == timelineButton) {
             tableViewCenterXConstraint.constant = 0
         }
+        if (sender == mentionsButton) {
+            
+        }
+        
+        self.containerViewCenterXConstraint.constant = 0
     }
     
     @IBAction func didSwipe(sender: UISwipeGestureRecognizer) {
