@@ -13,26 +13,42 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
     var tweets: [Tweet]?
     var displayedTweet: Tweet?
     var refreshControlItem: UIRefreshControl!
+    
+    var currentView: UIView?
 
     @IBOutlet weak var composeButton: UIButton!
     @IBOutlet weak var tableView: TweetsUITableView!
+    @IBOutlet weak var containerView: UIView!
     
+    @IBOutlet weak var timelineButton: UIButton!
     @IBOutlet weak var profileView: ProfileView!
+    @IBOutlet weak var profileButton: UIButton!
     
-    @IBOutlet weak var timelineLabel: UILabel!
+    @IBOutlet weak var containerViewCenterXConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var tableViewCenterXConstraint: NSLayoutConstraint!
-    @IBOutlet weak var profileLabel: UILabel!
+    var vcs: [UIViewController] = [UIViewController(), UIViewController()]
+    var currentVC: UIViewController?
+    
+    @IBAction func SidebarClick(sender: UIButton) {
+        if (sender == profileButton) {
+            tableViewCenterXConstraint.constant = -1000
+        }
+        if (sender == timelineButton) {
+            tableViewCenterXConstraint.constant = 0
+        }
+    }
     
     @IBAction func didSwipe(sender: UISwipeGestureRecognizer) {
         if (sender.direction == UISwipeGestureRecognizerDirection.Right) {
             if sender.state == .Ended {
-                self.tableViewCenterXConstraint.constant = -165
+                self.containerViewCenterXConstraint.constant = -165
             }
         }
         
         if (sender.direction == UISwipeGestureRecognizerDirection.Left) {
             if sender.state == .Ended {
-                self.tableViewCenterXConstraint.constant = 0
+                self.containerViewCenterXConstraint.constant = 0
             }
         }
     }
@@ -40,7 +56,10 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableViewCenterXConstraint.constant = 0
+        vcs[0].view = tableView
+        vcs[1].view = profileView
+        
+        self.containerViewCenterXConstraint.constant = 0
         
         self.tableView.estimatedRowHeight = 200
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -48,6 +67,11 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
         self.refreshControlItem = UIRefreshControl()
         self.refreshControlItem.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControlItem)
+//        
+//        if (currentView == nil) {
+//            currentView = tableView
+//            currentVC = vcs[0]
+//        }
         
         TwitterClient.sharedInstance.homeTimelineWithCompletion(nil,
             completion: { (tweets, error) in

@@ -66,30 +66,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FVL-Mf-udf" userLabel="Sidebar">
-                                <rect key="frame" x="0.0" y="0.0" width="165" height="536"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L8E-6x-JqR">
-                                        <rect key="frame" x="0.0" y="0.0" width="165" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Timeline" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4P1-rZ-WaJ">
-                                        <rect key="frame" x="0.0" y="31" width="165" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.16639486040000001" green="0.80124130260000004" blue="0.98886549469999996" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="165" id="u3V-yU-rhf"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qoa-tu-duM" userLabel="container">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4en-j0-3MN" userLabel="Profile" customClass="ProfileView" customModule="twitterclient" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                        <color key="backgroundColor" red="1" green="0.65224261979999998" blue="0.33705141799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="VRE-ER-qbJ" customClass="TweetsUITableView" customModule="twitterclient" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -162,10 +145,6 @@
                                             <outletCollection property="gestureRecognizers" destination="WIu-nl-UM9" appends="YES" id="cht-Gc-E9G"/>
                                         </connections>
                                     </tableView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4en-j0-3MN" userLabel="Profile" customClass="ProfileView" customModule="twitterclient" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
-                                        <color key="backgroundColor" red="1" green="0.65224261979999998" blue="0.33705141799999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -177,6 +156,63 @@
                                     <constraint firstItem="4en-j0-3MN" firstAttribute="height" secondItem="Qoa-tu-duM" secondAttribute="height" id="ptx-3a-rue"/>
                                     <constraint firstItem="VRE-ER-qbJ" firstAttribute="height" secondItem="Qoa-tu-duM" secondAttribute="height" id="wS3-Oq-2yZ"/>
                                     <constraint firstAttribute="centerX" secondItem="4en-j0-3MN" secondAttribute="centerX" id="wkA-xN-OGK"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FVL-Mf-udf" userLabel="Sidebar">
+                                <rect key="frame" x="0.0" y="0.0" width="165" height="536"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MPa-k3-O8u" userLabel="ProfileView">
+                                        <rect key="frame" x="0.0" y="58" width="165" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ha-91-etO">
+                                                <rect key="frame" x="60" y="5" width="44" height="30"/>
+                                                <state key="normal" title="Profile">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="SidebarClick:" destination="UBZ-8f-Be4" eventType="touchDown" id="ByY-TT-weH"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="0t4-x7-CVC"/>
+                                            <constraint firstAttribute="centerY" secondItem="8Ha-91-etO" secondAttribute="centerY" id="Vht-Wn-Z6l"/>
+                                            <constraint firstAttribute="centerX" secondItem="8Ha-91-etO" secondAttribute="centerX" constant="0.5" id="Vye-LW-nUU"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3nw-D0-X4Q" userLabel="TimelineView">
+                                        <rect key="frame" x="0.0" y="8" width="165" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EC2-pt-bat">
+                                                <rect key="frame" x="54" y="5" width="58" height="30"/>
+                                                <state key="normal" title="Timeline">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="SidebarClick:" destination="UBZ-8f-Be4" eventType="touchDown" id="NzU-UJ-Z4j"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="centerX" secondItem="EC2-pt-bat" secondAttribute="centerX" id="3dt-5y-FI6"/>
+                                            <constraint firstAttribute="height" constant="40" id="5B8-up-kNV"/>
+                                            <constraint firstAttribute="centerY" secondItem="EC2-pt-bat" secondAttribute="centerY" id="76m-Yy-vM1"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.16639486040000001" green="0.80124130260000004" blue="0.98886549469999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="MPa-k3-O8u" firstAttribute="top" secondItem="3nw-D0-X4Q" secondAttribute="bottom" constant="10" id="HDd-gd-1Rg"/>
+                                    <constraint firstItem="3nw-D0-X4Q" firstAttribute="top" secondItem="FVL-Mf-udf" secondAttribute="topMargin" id="L0G-aL-kGH"/>
+                                    <constraint firstItem="MPa-k3-O8u" firstAttribute="width" secondItem="FVL-Mf-udf" secondAttribute="width" id="Noi-qf-nAz"/>
+                                    <constraint firstAttribute="centerX" secondItem="MPa-k3-O8u" secondAttribute="centerX" id="TY1-2q-3Ms"/>
+                                    <constraint firstAttribute="width" secondItem="3nw-D0-X4Q" secondAttribute="width" id="WkS-QW-aZK"/>
+                                    <constraint firstAttribute="centerX" secondItem="3nw-D0-X4Q" secondAttribute="centerX" id="b9n-gO-l0W"/>
+                                    <constraint firstAttribute="width" constant="165" id="u3V-yU-rhf"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -217,11 +253,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="composeButton" destination="7jD-0i-C8z" id="j1y-c0-uag"/>
-                        <outlet property="profileLabel" destination="L8E-6x-JqR" id="hJk-Ff-AUD"/>
+                        <outlet property="containerView" destination="Qoa-tu-duM" id="Jqq-vY-9li"/>
+                        <outlet property="containerViewCenterXConstraint" destination="Bc9-rS-WCj" id="uEt-0N-j5l"/>
+                        <outlet property="profileButton" destination="8Ha-91-etO" id="z2Y-xG-b2e"/>
                         <outlet property="profileView" destination="4en-j0-3MN" id="J4I-F1-L8N"/>
                         <outlet property="tableView" destination="VRE-ER-qbJ" id="8oe-OG-YmJ"/>
-                        <outlet property="tableViewCenterXConstraint" destination="Bc9-rS-WCj" id="OXD-0T-Qt9"/>
-                        <outlet property="timelineLabel" destination="4P1-rZ-WaJ" id="SRy-sc-hOl"/>
+                        <outlet property="tableViewCenterXConstraint" destination="6mO-ni-sgP" id="HtV-jQ-8Ni"/>
+                        <outlet property="timelineButton" destination="EC2-pt-bat" id="laf-KM-tkM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fQ3-pZ-Qtm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -252,7 +290,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I have seen the future of newspapers: http://t.co/uhasdjkfsd" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C3d-zR-Vj6">
-                                <rect key="frame" x="10" y="58" width="458" height="20.5"/>
+                                <rect key="frame" x="10" y="58" width="458" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
