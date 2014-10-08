@@ -8,7 +8,7 @@
 
 import UIKit
 
-let cacheStuff = true
+let cacheStuff = false
 
 let tweetsKey = "tweetsKey"
 let mentionsKey = "mentionsKey"

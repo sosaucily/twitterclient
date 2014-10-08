@@ -10,7 +10,7 @@ import UIKit
 
 class TweetsListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var cacheStuff = true
+    var cacheStuff = false
     
     var tweets: [Tweet]?
     var mentions: [Tweet]?
@@ -62,9 +62,7 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
     
     @IBAction func SidebarClick(sender: UIButton) {
         if (sender == profileButton) {
-            profileViewCenterXConstraint.constant = 0
-            tableViewCenterXConstraint.constant = -1000
-            mentionsViewCenterXConstraint.constant = -1000
+            showProfileView()
         }
         if (sender == timelineButton) {
             tableViewCenterXConstraint.constant = 0
@@ -78,6 +76,12 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
         }
         
         self.containerViewCenterXConstraint.constant = 0
+    }
+    
+    func showProfileView() {
+        profileViewCenterXConstraint.constant = 0
+        tableViewCenterXConstraint.constant = -1000
+        mentionsViewCenterXConstraint.constant = -1000
     }
     
     @IBAction func didSwipe(sender: UISwipeGestureRecognizer) {
@@ -112,7 +116,6 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
         self.mentionRefreshControlItem = UIRefreshControl()
         self.mentionRefreshControlItem.addTarget(self, action: "onMentionRefresh", forControlEvents: UIControlEvents.ValueChanged)
         self.mentionsTable.addSubview(mentionRefreshControlItem)
-
         
         TwitterClient.sharedInstance.homeTimelineWithCompletion(nil,
             completion: { (tweets, error) in
@@ -125,7 +128,6 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
                 self.tableView.reloadData()
             }
         )
-        
 
         TwitterClient.sharedInstance.mentionTimelineWithCompletion(nil,
             completion: { (tweets, error) in
@@ -154,15 +156,23 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
         
         TwitterClient.sharedInstance.getUser(handle, completion: {(userData: NSDictionary) in
                 println("got data for user \(userData)")
+                self.setupProfileView(pUser: User(dictionary: userData))
+                self.showProfileView()
             }
         )
     }
     
-    func setupProfileView() {
-        ProfileBackgroundImage.setImageWithURL(NSURL(string: User.currentUser!.profileBannerUrl!))
-        let tweets = User.currentUser!.numTweets!
-        let followers = User.currentUser!.numFollowers!
-        let following = User.currentUser!.numFollowing!
+    func setupProfileView(pUser: User? = nil) {
+        var user = pUser
+        if (pUser == nil){
+            user = User.currentUser!
+        }
+        if (user!.profileBannerUrl != nil){
+            ProfileBackgroundImage.setImageWithURL(NSURL(string: user!.profileBannerUrl!))
+        }
+        let tweets = user!.numTweets!
+        let followers = user!.numFollowers!
+        let following = user!.numFollowing!
         profileStats.text = "\(tweets) Tweets - \(followers) Followers - \(following) Following"
     }
     
@@ -204,27 +214,27 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
         return 0
     }
     
-    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        //Use this section to cache tweets to save api calls during dev
-        if (cacheStuff) {
-            if (tableView == self.tableView) {
-                displayedTweet = tweets![0]
-            }
-            if (tableView == mentionsTable) {
-                displayedTweet = mentions![0]
-            }
-            return indexPath
-        }
-
-        if (tableView == self.tableView) {
-            displayedTweet = tweets![indexPath.row]
-        }
-        if (tableView == self.mentionsTable) {
-            displayedTweet = mentions![indexPath.row]
-        }
-        
-        return indexPath
-    }
+//    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+//        //Use this section to cache tweets to save api calls during dev
+//        if (cacheStuff) {
+//            if (tableView == self.tableView) {
+//                displayedTweet = tweets![0]
+//            }
+//            if (tableView == mentionsTable) {
+//                displayedTweet = mentions![0]
+//            }
+//            return indexPath
+//        }
+//
+//        if (tableView == self.tableView) {
+//            displayedTweet = tweets![indexPath.row]
+//        }
+//        if (tableView == self.mentionsTable) {
+//            displayedTweet = mentions![indexPath.row]
+//        }
+//        
+//        return indexPath
+//    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("tweetCell", forIndexPath: indexPath) as TweetCell
