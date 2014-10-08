@@ -3,6 +3,24 @@ Twitter Client
 
 ![Alt text](./twitterclient_2.gif?raw=true "Optional Title")
 
+
+Twitter Client part 2 (week 4):
+Got all the requireds done.  Took about 10 hrs
+
+Hamburger menu
+* Dragging anywhere in the view should reveal the menu.
+* The menu should include links to your profile, the home timeline, and the mentions view.
+* The menu can look similar to the LinkedIn menu below or feel free to take liberty with the UI.
+
+Profile page
+* Contains the user header view
+* Contains a section with the users basic stats: # tweets, # following, # followers
+
+Home Timeline
+* Tapping on a user image should bring up that user's profile page
+
+
+
 Was able to get all the required features:
 
 * User can sign in using OAuth login flow
