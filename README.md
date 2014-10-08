@@ -1,7 +1,7 @@
 Twitter Client
 ==============
 
-![Alt text](./twitterclient.gif?raw=true "Optional Title")
+![Alt text](./twitterclient_2.gif?raw=true "Optional Title")
 
 Was able to get all the required features:
 
