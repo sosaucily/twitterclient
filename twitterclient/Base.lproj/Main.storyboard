@@ -268,12 +268,14 @@
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="This is the body of a very important tweet!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jb-b9-FWS">
                                                             <rect key="frame" x="71" y="31" width="501" height="30"/>
+                                                            <gestureRecognizers/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xa2-Y1-Prw">
                                                             <rect key="frame" x="18" y="10" width="48" height="48"/>
+                                                            <gestureRecognizers/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="48" id="7Iw-O0-6eN"/>
                                                                 <constraint firstAttribute="width" constant="48" id="efO-74-5qf"/>
@@ -312,13 +314,14 @@
                                                         <constraint firstAttribute="trailingMargin" secondItem="4jb-b9-FWS" secondAttribute="trailing" constant="20" id="y0D-sI-dGL"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <gestureRecognizers/>
                                                 <connections>
                                                     <outlet property="handleLabel" destination="ail-pH-hVo" id="vvV-vX-9XK"/>
                                                     <outlet property="nameLabel" destination="wJt-cR-qok" id="iYJ-pt-u0q"/>
                                                     <outlet property="timestampLabel" destination="eIh-bH-6wA" id="1Ea-rx-ea9"/>
                                                     <outlet property="tweetText" destination="4jb-b9-FWS" id="KPv-uj-Mc4"/>
                                                     <outlet property="userImage" destination="xa2-Y1-Prw" id="Enq-gT-lfe"/>
-                                                    <segue destination="iHK-oE-5YM" kind="show" identifier="showTweetSegue" id="ecI-SW-IJA"/>
+                                                    <segue destination="iHK-oE-5YM" kind="show" identifier="showTweetSegue" id="TAw-KO-PYc"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>

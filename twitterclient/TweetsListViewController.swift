@@ -10,7 +10,7 @@ import UIKit
 
 class TweetsListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var cacheStuff = false
+    var cacheStuff = true
     
     var tweets: [Tweet]?
     var mentions: [Tweet]?
@@ -44,11 +44,21 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var ProfileBackgroundImage: UIImageView!
     @IBOutlet weak var profileStats: UILabel!
     
+    func tapTweetOwnerImage(sender: UITapGestureRecognizer) {
+
+        var cell = sender.view as TweetCell
+        var location = sender.locationInView(cell)
+        if (cell.userImage.pointInside(location, withEvent: nil))
+        {
+            println("clicked image")
+            var handle = cell.handleLabel.text
     
-    
-    
-    
-    
+            fetchProfileAndShow(handle!)
+        } else {
+            displayedTweet = cell.theTweet
+            performSegueWithIdentifier("showTweetSegue", sender: self)
+        }
+    }
     
     @IBAction func SidebarClick(sender: UIButton) {
         if (sender == profileButton) {
@@ -139,6 +149,15 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
         // Dispose of any resources that can be recreated.
     }
     
+    func fetchProfileAndShow(handle: String) {
+        println("got handle \(handle)")
+        
+        TwitterClient.sharedInstance.getUser(handle, completion: {(userData: NSDictionary) in
+                println("got data for user \(userData)")
+            }
+        )
+    }
+    
     func setupProfileView() {
         ProfileBackgroundImage.setImageWithURL(NSURL(string: User.currentUser!.profileBannerUrl!))
         let tweets = User.currentUser!.numTweets!
@@ -194,6 +213,7 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
             if (tableView == mentionsTable) {
                 displayedTweet = mentions![0]
             }
+            return indexPath
         }
 
         if (tableView == self.tableView) {
@@ -226,6 +246,7 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
         if (tableView == mentionsTable) {
             tweet = self.mentions![index]
         }
+        cell.theTweet = tweet
         
         cell.tweetText.text = tweet!.text
         cell.userImage.setImageWithURL(NSURL(string: tweet!.user!.profileImageUrl!))
@@ -234,6 +255,9 @@ class TweetsListViewController: UIViewController, UITableViewDataSource, UITable
         cell.handleLabel.text = "@\(tweet!.user!.screenname!)"
         cell.timestampLabel.text = tweet!.createdAt?.prettyTimestampSinceNow()
         
+        let gr = UITapGestureRecognizer(target: self, action: "tapTweetOwnerImage:")
+//        cell.userInteractionEnabled = true
+        cell.addGestureRecognizer(gr)
         return cell
     }
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-let cacheStuff = false
+let cacheStuff = true
 
 let tweetsKey = "tweetsKey"
 let mentionsKey = "mentionsKey"
@@ -93,6 +93,19 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
                 println(error)
         })
     }
+    
+    func getUser(screen_name: String, completion: (userData: NSDictionary) -> ()) {
+        var params = ["screen_name":screen_name]
+        
+        GET("1.1/users/show.json", parameters: params, success: { (operation, response) -> Void in
+                println("fetch info for user \(screen_name)!")
+                completion(userData: response as NSDictionary)
+            }, { (operation, error) -> Void in
+                println("error getting info for user")
+                println(error)
+        })
+    }
+    
     
     func homeTimelineWithCompletion(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> ()) {
 
